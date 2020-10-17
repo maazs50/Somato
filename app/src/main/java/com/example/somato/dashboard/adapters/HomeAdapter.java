@@ -54,6 +54,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyHolder> {
     public void onBindViewHolder(@NonNull final MyHolder holder, final int position) {
         Restaurant_ restaurant = list.get(position).getRestaurant();
         holder.textView_Name.setText(restaurant.getName());
+        holder.tv_area.setText(restaurant.getLocation().getLocality());
+        if (restaurant.getUserRating().getAggregateRating()==0.0){
+            holder.rating_tv.setVisibility(View.GONE);
+        }else{
+            holder.rating_tv.setVisibility(View.VISIBLE);
+            holder.rating_tv.setText("Ratings "+restaurant.getUserRating().getAggregateRating()+" with "+restaurant.getUserRating().getVotes()+" votes");
+        }
         Glide.with(mcontext).load(restaurant.getThumb()).apply(new RequestOptions().placeholder(R.drawable.image6)).into(holder.imageView);
         holder.itemView.setOnClickListener(view -> onClickListener.getRestaurantId(restaurant));
     }
@@ -64,7 +71,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyHolder> {
     }
 
     public class MyHolder extends RecyclerView.ViewHolder{
-        TextView textView_Name;
+        TextView textView_Name,tv_area,rating_tv;
         ImageView imageView;
 
 
@@ -72,6 +79,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyHolder> {
             super(itemView);
             textView_Name = itemView.findViewById(R.id.nameTextView);
             imageView = itemView.findViewById(R.id.thumbImageView);
+            tv_area = itemView.findViewById(R.id.area_tv);
+            rating_tv = itemView.findViewById(R.id.rating);
         }
 
     }

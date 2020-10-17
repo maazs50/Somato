@@ -56,17 +56,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyHold
             holder.cardView.setCardBackgroundColor(Color.parseColor("#fafafa"));
         }
         holder.linearLayout.setOnClickListener(view -> {
-          /*  selectedPosition = position;
-            String lanCode = String.valueOf(list.get(selectedPosition).getLangCode());
-            String langNum = String.valueOf(list.get(selectedPosition).getLanguageNumber());
-
-            try {
-//                SharedPrefsHelper.getInstance().save(AppConstants.APP_LANG_POSITION, selectedPosition);
-                this.appLangListener = (AppLangListener) mcontext;
-                appLangListener.getSelectLanguage(lanCode, langNum,selectedPosition);
-                notifyDataSetChanged();
-            } catch (ClassCastException ex) {
-            }*/
+            selectedPosition = position;
 
         });
 

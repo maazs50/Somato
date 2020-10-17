@@ -9,11 +9,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.somato.R;
 import com.example.somato.Restaurant.view.RetaurantDetailsActivity;
+import com.example.somato.categories.view.CategoryActivity;
 import com.example.somato.dashboard.DashBoardView;
 import com.example.somato.dashboard.ProfileActivity;
 import com.example.somato.dashboard.adapters.HomeAdapter;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements DashBoardView, Ho
     private ProgressBar progressBar;
     private Toolbar toolbar;
     private ImageView profileIv,settingsIv;
+    private TextView moreTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +43,14 @@ public class MainActivity extends AppCompatActivity implements DashBoardView, Ho
         toolbar = findViewById(R.id.toolbar);
         profileIv = findViewById(R.id.iv_profile);
         settingsIv = findViewById(R.id.iv_settings);
+        moreTv =findViewById(R.id.more_tv);
         progressBar.setVisibility(View.VISIBLE);
         profileIv.setOnClickListener(view -> {
             Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+        });
+        settingsIv.setOnClickListener(view -> {
+            Intent intent = new Intent(this, CategoryActivity.class);
             startActivity(intent);
         });
         LinearLayoutManager manager=new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
@@ -57,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements DashBoardView, Ho
         adapter=new HomeAdapter(response.getRestaurants(),this);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+        moreTv.setVisibility(View.VISIBLE);
     }
 
     @Override
