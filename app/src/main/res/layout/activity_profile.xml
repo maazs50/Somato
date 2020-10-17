@@ -173,7 +173,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/futur"
                 android:text="Tony Ferguson"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -186,7 +185,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:fontFamily="@font/futura_heavy_font"
+                android:textStyle="bold"
                 android:text="maaz.elcucuy@gmail.com"
                 android:textColor="@color/black_effective"
                 app:layout_constraintStart_toStartOf="parent"
@@ -204,9 +203,8 @@
                     android:id="@+id/text_id"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="1 "
+                    android:text=""
                     android:gravity="center_vertical"
-                    android:fontFamily="@font/futur"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
 
@@ -215,7 +213,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Elcucuy"
-                    android:fontFamily="@font/futura_medium_bt"
+                    android:textStyle="normal"
                     android:textColor="@color/black"/>
 
 
@@ -230,7 +228,7 @@
                 android:layout_marginEnd="50dp"
                 android:maxLines="3"
                 android:text="0070070071"
-                android:fontFamily="@font/futura_medium_bt"
+                android:textStyle="normal"
                 android:textColor="@color/black"
                 android:textSize="13dp"
                 android:textAlignment="textStart"
@@ -267,7 +265,7 @@
                         android:layout_marginEnd="2dp"
                         android:background="@drawable/btn_call"
                         android:gravity="center"
-                        android:fontFamily="@font/futura_medium_bt"
+                        android:textStyle="normal"
                         android:layout_marginStart="20dp"
 
                         android:text="Your Orders"
@@ -292,7 +290,7 @@
 
                         android:background="@drawable/btn_message"
                         android:gravity="center"
-                        android:fontFamily="@font/futura_medium_bt"
+                        android:textStyle="normal"
                         android:layout_marginEnd="20dp"
                         android:text="Membership"
                         android:textColor="@color/white"
@@ -321,7 +319,7 @@
                           android:layout_height="match_parent"
                           android:text="Dineline"
                           android:textSize="16dp"
-                          android:fontFamily="@font/futura_heavy_font"
+                          android:textStyle="normal"
                           android:textColor="@color/black_effective"
                 />
 
@@ -355,7 +353,7 @@
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="match_parent"
                           android:text="Reviews"
-                          android:fontFamily="@font/futura_heavy_font"
+                          android:textStyle="normal"
                           android:textSize="16dp"
                           android:textColor="@color/black_effective"
 
@@ -392,7 +390,7 @@
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="match_parent"
                           android:text="Been There(2)"
-                          android:fontFamily="@font/futura_heavy_font"
+                          android:textStyle="normal"
                           android:textSize="16dp"
                           android:textColor="@color/black_effective"
 
