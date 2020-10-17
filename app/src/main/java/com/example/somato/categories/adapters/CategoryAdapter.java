@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.somato.R;
 import com.example.somato.categories.model.CategoryFields;
+import com.example.somato.categories.view.CategoryActivity;
 
 import java.util.List;
 import java.util.zip.Inflater;
@@ -27,10 +28,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyHold
     private Inflater inflater;
     private List<CategoryFields> list;
     private int selectedPosition = 0;
-
+    private CatListener catListener;
     public CategoryAdapter(List<CategoryFields> list, Context context) {
         this.list = list;
         this.mcontext = context;
+        selectedPosition= CategoryActivity.oldPosition;
+
+        try{
+            this.catListener = (CatListener) context;
+        }catch (Exception e){
+
+        }
     }
 
     @NonNull
@@ -46,10 +54,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyHold
 
         holder.textView.setText(list.get(position).getName());
 
-
         if (selectedPosition == position) {
             holder.imageView.setVisibility(View.VISIBLE);
-            holder.cardView.setCardBackgroundColor(Color.parseColor("#feebc4"));
+            holder.cardView.setCardBackgroundColor(Color.parseColor("#fafafa"));
             holder.mLanguageLayout.setVisibility(View.VISIBLE);
         } else {
             holder.imageView.setVisibility(View.INVISIBLE);
@@ -57,7 +64,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyHold
         }
         holder.linearLayout.setOnClickListener(view -> {
             selectedPosition = position;
+            int catId = list.get(selectedPosition).getId();
+            String catName = String.valueOf(list.get(selectedPosition).getName());
 
+            try {
+                this.catListener = (CatListener) mcontext;
+                catListener.getCategory(catName, catId,selectedPosition);
+                notifyDataSetChanged();
+            } catch (ClassCastException ex) {
+            }
         });
 
     }
@@ -84,8 +99,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyHold
         }
     }
 
-    public interface AppLangListener {
-        void getSelectLanguage(String language, String languageNumber, int langPos);
+    public interface CatListener {
+        void getCategory(String name, int id, int langPos);
     }
 
 }

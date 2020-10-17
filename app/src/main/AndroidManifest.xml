@@ -10,18 +10,23 @@
     <application
         android:name=".SmtApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:configChanges="locale|orientation"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".dashboard.ProfileActivity"
-            android:screenOrientation="portrait" ></activity>
-        <activity android:name=".Restaurant.view.RetaurantDetailsActivity"
+        <activity android:name=".seeAll.SeeAllActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".dashboard.ProfileActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".dashboard.SplashActivity"
-            android:screenOrientation="portrait" >
+        <activity
+            android:name=".Restaurant.view.RetaurantDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".dashboard.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +36,8 @@
         <activity
             android:name=".dashboard.view.MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".categories.view.CategoryActivity"
+        <activity
+            android:name=".categories.view.CategoryActivity"
             android:screenOrientation="portrait" />
     </application>
 

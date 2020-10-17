@@ -19,18 +19,23 @@ import com.example.somato.categories.model.CategoriesList;
 import com.example.somato.categories.model.CategoryFields;
 import com.example.somato.categories.presenter.CategoryPresenter;
 import com.example.somato.dashboard.view.MainActivity;
+import com.example.somato.utitlities.AppConstants;
 import com.example.somato.utitlities.ErrorResponse;
+import com.example.somato.utitlities.SharedPrefsHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryActivity extends AppCompatActivity implements CategoriesView {
+public class CategoryActivity extends AppCompatActivity implements CategoriesView,CategoryAdapter.CatListener {
     private CategoryPresenter presenter;
     private CategoryAdapter adapter;
     private RecyclerView recyclerView;
-    List<CategoryFields> list;
-    ProgressBar progressBar;
-    Button doneBtn;
+    private List<CategoryFields> list;
+    private ProgressBar progressBar;
+    private Button doneBtn;
+    public static int oldPosition = 0;
+    private int catId=0,lang=0;
+    private String catName="Delivery";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +44,20 @@ public class CategoryActivity extends AppCompatActivity implements CategoriesVie
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
         progressBar = findViewById(R.id.progressBar);
         doneBtn = findViewById(R.id.btn_done);
+        try {
+            oldPosition = SharedPrefsHelper.getInstance().get(AppConstants.CATEGORY_POSITION);
+        } catch (NullPointerException ex) {
+            oldPosition = 0;
+        }
+
         doneBtn.setOnClickListener(view -> {
+            saveLocale();
             Intent goToMain = new Intent(this, MainActivity.class);
             startActivity(goToMain);
+            finish();
         });
         presenter = new CategoryPresenter(this,this);
         progressBar.setVisibility(View.VISIBLE);
@@ -71,4 +85,17 @@ public class CategoryActivity extends AppCompatActivity implements CategoriesVie
     }
 
 
+    @Override
+    public void getCategory(String name, int id, int pos) {
+        catName = name;
+        catId = id;
+        lang = pos;
+        oldPosition = pos;
+    }
+
+    public void saveLocale() {
+        SharedPrefsHelper.getInstance().save(AppConstants.CATEGORY_ID, catId);
+        SharedPrefsHelper.getInstance().save(AppConstants.CATEGORY_NAME, catName);
+        SharedPrefsHelper.getInstance().save(AppConstants.CATEGORY_POSITION,lang);
+    }
 }

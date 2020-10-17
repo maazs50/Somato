@@ -8,6 +8,4 @@ import com.example.somato.utitlities.ErrorResponse;
 public interface DashBoardView {
     public void onSearchResultSucess(SearchedResponse response);
     public void onError(ErrorResponse error);
-
-    void getRestaurantId(Restaurant restaurant);
 }

@@ -26,6 +26,8 @@
             android:singleLine="true"
             android:text="Somato"
             android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/iv_settings"
             app:layout_constraintHorizontal_bias="0.0"
@@ -46,7 +48,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/tv_toolbartitle"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/settings" />
+            app:srcCompat="@drawable/ic_filter" />
 
         <ImageView
             android:id="@+id/iv_profile"
