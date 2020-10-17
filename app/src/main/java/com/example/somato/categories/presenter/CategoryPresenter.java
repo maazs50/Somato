@@ -6,6 +6,10 @@ import android.widget.Toast;
 import com.example.somato.categories.CategoriesView;
 import com.example.somato.categories.model.CategoriesList;
 import com.example.somato.network.BaseRetrofitHandler;
+import com.example.somato.utitlities.AppConstants;
+import com.example.somato.utitlities.ErrorResponse;
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -13,6 +17,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.HttpException;
 
 public class CategoryPresenter {
     private Activity context;
@@ -39,8 +44,18 @@ public class CategoryPresenter {
 
         @Override
         public void onError(Throwable e) {
-            categoriesView.onError(e.toString());
-        }
+            ErrorResponse errorResponse=null;
+            try {
+                String code = ((HttpException) e).response().errorBody().string();
+                Gson gson = new Gson();
+                errorResponse = gson.fromJson(code, ErrorResponse.class);
+                categoriesView.onError(errorResponse);
+            } catch (Exception ex) {
+                errorResponse= new ErrorResponse();
+                errorResponse.setMessage(AppConstants.ERROR_HANDLE_MESSAGE);
+                categoriesView.onError(errorResponse);
+
+            }        }
 
         @Override
         public void onComplete() {

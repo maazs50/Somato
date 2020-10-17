@@ -1,8 +1,6 @@
 package com.example.somato.dashboard.model;
 
-import android.location.Location;
 
-import com.example.somato.R;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -66,5 +64,6 @@ public class Restaurant_ {
     public UserRating getUserRating() {
         return userRating;
     }
+
 }
 

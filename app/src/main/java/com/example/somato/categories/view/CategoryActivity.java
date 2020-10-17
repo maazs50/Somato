@@ -19,6 +19,7 @@ import com.example.somato.categories.model.CategoriesList;
 import com.example.somato.categories.model.CategoryFields;
 import com.example.somato.categories.presenter.CategoryPresenter;
 import com.example.somato.dashboard.view.MainActivity;
+import com.example.somato.utitlities.ErrorResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,9 +65,9 @@ public class CategoryActivity extends AppCompatActivity implements CategoriesVie
     }
 
     @Override
-    public void onError(String error) {
+    public void onError(ErrorResponse error) {
         progressBar.setVisibility(View.GONE);
-        Toast.makeText(this,error,Toast.LENGTH_LONG).show();
+        Toast.makeText(this,error.getMessage(),Toast.LENGTH_LONG).show();
     }
 
 

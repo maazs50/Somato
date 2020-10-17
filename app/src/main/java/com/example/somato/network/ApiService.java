@@ -2,18 +2,29 @@ package com.example.somato.network;
 
 
 import com.example.somato.categories.model.CategoriesList;
+import com.example.somato.dashboard.model.SearchedResponse;
 
 import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
-    @Headers({"user-key: "+Config.API_KEY,"Accept: application/json"})
+    @Headers({"user-key: " + Config.API_KEY, "Accept: application/json"})
     @GET(ApiEndPoints.CATEGORIES)
     Observable<CategoriesList> getCategories();
+
+    @Headers({"user-key: " + Config.API_KEY, "Accept: application/json"})
+    @GET(ApiEndPoints.SEARCH)
+    Observable<SearchedResponse> searchForDashBoard(
+            @Query("category") int category,
+            @Query("lat") double latitude,
+            @Query("lon") double longitude,
+            @Query("sort") String sortBy,
+            @Query("count") int limit);
 
 /*    @Headers("Content-Type: application/json")
     @GET(ApiEndPoints.RECENT_MORE)

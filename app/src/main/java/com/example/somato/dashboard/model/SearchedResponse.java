@@ -9,10 +9,10 @@ public class SearchedResponse {
 
 @SerializedName("results_found")
 @Expose
-private Integer resultsFound;
+private int resultsFound;
 @SerializedName("restaurants")
 @Expose
-private List<Restaurant> restaurants = null;
+private List<Restaurant> restaurants;
 
 public Integer getResultsFound() {
 return resultsFound;
